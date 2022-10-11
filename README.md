@@ -32,10 +32,11 @@ aws_secret_access_key=<your-key>
 
 ## Build and deploy
 
-Build and deploy all in once by run command
-```shell script
-$ sh build_and_deploy.sh
-```
+Build and deploy all in once by using Makefile
+ - ```make build```     : Build application
+ - ```make deploy```    : Deploy on aws
+ - ```make apply```     : Build & deploy on aws
+ - ```make destroy```   : Destroy aws resource
 
 Or step by step as below
 
@@ -46,6 +47,7 @@ Or step by step as below
 $ cd hello-world
 $ ../mvnw clean package
 ...
+$ cd ..
 ```
 
 ### Create AWS Lambda 
@@ -57,12 +59,20 @@ $ terraform apply
 $ cd ..
 ```
 
-## Destroy resource on AWS
+### Destroy resource on AWS
 
 ```shell script
 $ cd terraform
 $ terraform destroy
 $ cd ..
+```
+
+## Test 
+Send HTTP request to AWS API Gateway by using curl
+
+```shell script
+$ curl -X GET -H "Content-Type: application/x-www-form-urlencoded" "<your_url>/welcome?userName=huypva"
+"Welcome null to the lambda function"%
 ```
 
 ## Contributing
@@ -77,6 +87,10 @@ The code is open sourced. I encourage fellow developers to contribute and help i
 - Create new Pull Request
 
 ## Reference
+
+- https://learn.hashicorp.com/tutorials/terraform/lambda-api-gateway?in=terraform/aws
+- https://www.youtube.com/watch?v=euLs1SbYKzE&t=807s
+- https://mydeveloperplanet.com/2020/11/04/how-to-deploy-a-spring-cloud-function-on-aws-lambda/
 
 ## License
 This project is licensed under the Apache License v2.0. Please see LICENSE located at the project's root for more details.
