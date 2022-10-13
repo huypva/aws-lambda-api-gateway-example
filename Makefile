@@ -11,14 +11,12 @@ build:
 
 deploy:
 	@echo "Deploying the Terraform!"
-	@(cd terraform && \
-	terraform init && \
-	terraform apply -auto-approve)
+	@terraform -chdir="terraform/" init
+	@terraform -chdir="terraform/" apply -auto-approve
 
 destroy:
 	@echo "Destroying the Terraform!"
-	@(cd terraform && \
-	terraform destroy -auto-approve)
+	@terraform -chdir="terraform/" destroy -auto-approve
 
 apply: build deploy
 
